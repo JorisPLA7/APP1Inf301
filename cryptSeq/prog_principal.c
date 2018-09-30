@@ -132,7 +132,7 @@ int planB(sequence *mess) {
    }
 int crypteSeq(sequence *mess){
     // Permet de resoudre en entier l'exercice crypteSeq
-    // mess contient le dernier message de l'exercice precedant
+    // mess contient le dernier message de l'exercice precedent
 	
     // Initialisation
     char reponse[100000];
