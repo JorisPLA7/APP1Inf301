@@ -7,8 +7,7 @@
 ---DEBUG--- crcr   .....  ALICE : MESSAGE DE BOB RETROUVE MOI SUR 'planB' LE MOT DE PASSE EST 'qui vivra verra' LAISSE MOI UN MESS...crcrcrc zbmbbzzzzz bz b zbbb
 */
 
-char decalage(char lettreLue, int decal)
-{
+char decalage(char lettreLue, int decal){
     char lettreSuivante;
     decal=(decal*decal<(26-decal)*(26-decal))?decal:26-decal  ;
     
@@ -20,8 +19,7 @@ char decalage(char lettreLue, int decal)
         if (lettreSuivante < 'a'){
             lettreSuivante =  lettreSuivante+26;
         }
-
-    }
+}
 
     else if ('A' <= lettreLue && lettreLue <= 'Z' ) {
         lettreSuivante = lettreLue + decal;
