@@ -40,7 +40,6 @@ char decalage(char lettreLue, int decal){
         if (lettreSuivante < 'a'){
             lettreSuivante =  lettreSuivante+26;
         }
-
     }
 
     else if ('A' <= lettreLue && lettreLue <= 'Z' ) {// Traitement des majuscules
@@ -51,13 +50,12 @@ char decalage(char lettreLue, int decal){
         if (lettreSuivante < 'A'){
             lettreSuivante = lettreSuivante+26;
         }
-
     }
 
     else lettreSuivante = lettreLue;
-
     return lettreSuivante;
 }
+
 void appliquer_decalage(sequence *message, int decal){
 		// Applique un decalage de Cesar a une sequence en appelant la fonction decalage 
 		for(int i = 0; i<message->longueur;i++){
@@ -91,13 +89,12 @@ int planB(sequence *mess) {
     envoyer_recevoir("load planB", reponse);
     envoyer_recevoir("help", reponse);
     
-    
-    convert(reponse, &message) ; // Convertion...
+    convert(reponse, &message) ; // Conversion...
     
     // Decryptage du message d'aide (Decalage de Cesar)
     int dc='C'-message.liste[0]; //On trouve la cle en comparant a la premiere lettre qui est un C
     appliquer_decalage(&message,dc);
-    reformat(message,reponse);// Convertion...
+    reformat(message,reponse);// Conversion...
     envoyer_recevoir(reponse, reponse);// Renvoi
     
     // Renvoi de la reponse au serveur avec le decalage de Cesar correspondant
@@ -158,7 +155,7 @@ int crypteSeq(sequence *mess){
     cryptseq(mess); // Cryptage du message de l'execice precedant (fonction definie dans le fichier "cryptSeq.c")
     mess->longueur+= -1 ; // Le dernier caractere provoque une erreur
     copie(&message, mess, 0); // Stockage
-    reformat(message,reponse); // Convertion...
+    reformat(message,reponse); // Conversion...
     envoyer_recevoir(reponse, reponse); // Renvoi
     
     // Deuxieme partie : decryptage 
@@ -166,7 +163,7 @@ int crypteSeq(sequence *mess){
     sequence seqq;
     copie(&seqq, &message, 83);
     decryptseq(&seqq); // Decryptage du message recu (fonction definie dans le fichier "cryptSeq.c")
-    reformat(seqq,reponse);// Convertion...
+    reformat(seqq,reponse);// Conversion...
     envoyer_recevoir(reponse, reponse);// Renvoi
 	
     return 0; // Deconnexion
