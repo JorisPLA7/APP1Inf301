@@ -14,18 +14,17 @@ char decalage(char lettreLue, int decal)
     // Signifie : "si '(decal*decal<(26-decal)*(26-decal))' est vrai, alors 'decal' sinon '26-decal'
     // Selection de la plus petite valeur en valeur absolue pour un meme decalage
     // (exemple : choisir entre +16 et -10) pour eviter les sorties de la table ASCII
-    if ('a' <= lettreLue && lettreLue <= 'z' ) {
+    if ('a' <= lettreLue && lettreLue <= 'z' ) { //Traitement des minuscules
         lettreSuivante = lettreLue + decal;
         if (lettreSuivante > 'z'){
-            lettreSuivante =  lettreSuivante-26;
+            lettreSuivante =  lettreSuivante-26; //Si l'on arrive a la fin de l'alphabet, on repasse au debut
         }
         if (lettreSuivante < 'a'){
-            lettreSuivante =  lettreSuivante+26;
+            lettreSuivante =  lettreSuivante+26; //Si l'on arrive au debut de l'alphabet, on repasse a la fin
         }
-
     }
 
-    else if ('A' <= lettreLue && lettreLue <= 'Z' ) {
+    else if ('A' <= lettreLue && lettreLue <= 'Z' ) { //Traitement des majuscules
         lettreSuivante = lettreLue + decal;
         if (lettreSuivante > 'Z'){
             lettreSuivante = lettreSuivante-26;
