@@ -11,8 +11,10 @@ char decalage(char lettreLue, int decal){
     char lettreSuivante;
     decal=(decal*decal<(26-decal)*(26-decal))?decal:26-decal  ; 
     // Signifie : "si '(decal*decal<(26-decal)*(26-decal))' est vrai, alors 'decal' sinon '26-decal'
+    // Selection de la plus petite valeur en valeur absolue pour un meme decalage
+    // (exemple : choisir entre +16 et -10) pour eviter les sorties de la table ASCII
     
-    if ('a' <= lettreLue && lettreLue <= 'z' ) {
+    if ('a' <= lettreLue && lettreLue <= 'z' ) { //Traitement des minuscules
         lettreSuivante = lettreLue + decal;
         if (lettreSuivante > 'z'){
             lettreSuivante =  lettreSuivante-26;
@@ -22,7 +24,7 @@ char decalage(char lettreLue, int decal){
         }
 }
 
-    else if ('A' <= lettreLue && lettreLue <= 'Z' ) {
+    else if ('A' <= lettreLue && lettreLue <= 'Z' ) { //Traitement des majuscules
         lettreSuivante = lettreLue + decal;
         if (lettreSuivante > 'Z'){
             lettreSuivante = lettreSuivante-26;
@@ -30,11 +32,9 @@ char decalage(char lettreLue, int decal){
         if (lettreSuivante < 'A'){
             lettreSuivante = lettreSuivante+26;
         }
-
     }
 
     else lettreSuivante = lettreLue;
-
     return lettreSuivante;
 }
 
@@ -50,34 +50,27 @@ int main() {
     // Attend après chaque échange l'appui sur entrée
     attente_automatique(false);
 
-    // Commentez ou passez à 'false' les lignes ci-dessus pour en désactiver 
-    // les effets.
-
     if (! connexion()) {
         fprintf (stderr, "Impossible de se connecter à AppoLab!\n");
         return 1;
     }
 
     envoyer_recevoir("login PEREZ 11713143", reponse);
-    /* printf("%s", reponse);  // décommentez pour afficher la réponse du serveur */
+    printf("%s", reponse);
     envoyer_recevoir("load planB", reponse);
     envoyer_recevoir("help", message);
-    int dc='C'-message[0];
+    int dc='C'-message[0]; //Permet de calculer la clef
     
-		//printf("Décalage :%d",dc);
-    
-		for (int j=0; j<1; j++) {
-        for (int i =0; message[i]!=0; i++)
+    for (int j=0; j<1; j++) {
+        for (int i =0; message[i]!=0; i++){
             message[i] = decalage(message[i], dc);
-        
+	}
     }    
-    
     
     envoyer_recevoir(message, reponse);
     char has[100] = "hasta la revolucion";
     for (int j=0; j<1; j++) {
         for (int i=0; has[i]!=0; i++){
-
             has[i] = decalage(has[i], dc);
         }
         printf("%s",has);
@@ -87,13 +80,11 @@ int main() {
     envoyer_recevoir(has, message);
     
     int dc2='C'-message[18];
-    
-		//printf("Décalage :%d",dc2);
-    
-		for (int j=0; j<1; j++) {
-        for (int i =0; message[i]!=0; i++)
+	
+    for (int j=0; j<1; j++) {
+        for (int i =0; message[i]!=0; i++){
             message[i] = decalage(message[i], dc2);
-        
+	}
     }
     
     envoyer_recevoir(message, reponse);
