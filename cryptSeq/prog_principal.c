@@ -30,7 +30,9 @@ void copie(sequence *retour, sequence *seq, int decal){
 char decalage(char lettreLue, int decal){
     // Applique le décalage de Cesar à une lettre lue
     char lettreSuivante;
-    decal=(decal*decal<(26-decal)*(26-decal))?decal:26-decal  ; // Selection de la plus petite valeur en valeur absolue pour un meme decalage
+    decal=(decal*decal<(26-decal)*(26-decal))?decal:26-decal  ; 
+    // Signifie : "si '(decal*decal<(26-decal)*(26-decal))' est vrai, alors 'decal' sinon '26-decal'
+    // Selection de la plus petite valeur en valeur absolue pour un meme decalage
     // (exemple : choisir entre +16 et -10) pour eviter les sorties de la table ASCII
     if ('a' <= lettreLue && lettreLue <= 'z' ) {// Traitement des minuscules
         lettreSuivante = lettreLue + decal;
