@@ -53,56 +53,47 @@ int main() {
     // Attend après chaque échange l'appui sur entrée
     attente_automatique(false);
 
-    // Commentez ou passez à 'false' les lignes ci-dessus pour en désactiver 
-    // les effets.
-
     if (! connexion()) {
         fprintf (stderr, "Impossible de se connecter à AppoLab!\n");
         return 1;
     }
 
     envoyer_recevoir("login PEREZ 11713143", reponse);
-    /* printf("%s", reponse);  // décommentez pour afficher la réponse du serveur */
+    printf("%s", reponse);
     envoyer_recevoir("load planB", reponse);
     envoyer_recevoir("help", message);
-    int dc='C'-message[0];
-    //printf("Décalage :%d",dc);
-    for (int j=0; j<1; j++) {
-        for (int i =0; message[i]!=0; i++)
-            message[i] = decalage(message[i], dc);
-        
-    }    
     
+    int dc='C'-message[0]; //met dans la variable 'dc' la valeur du decalage des lettres
+    for (int j=0; j<1; j++) {
+        for (int i =0; message[i]!=0; i++){
+            message[i] = decalage(message[i], dc); //appelle la fonction decalage avec la clef calculee au dessus
+        }
+    }    
     
     envoyer_recevoir(message, reponse);
     char has[100] = "hasta la revolucion";
     for (int j=0; j<1; j++) {
         for (int i=0; has[i]!=0; i++){
-
             has[i] = decalage(has[i], dc);
         }
-        // printf("%s",has);
     }
     
     envoyer_recevoir("start", reponse);
     envoyer_recevoir(has, message);
     
-    int dc2='C'-message[18];
-    //printf("Décalage :%d",dc2);
+    int dc2='C'-message[18]; //On prend message[18] car on ne doit pas prendre le "bonne reponse !" qui a ete envoye par le serveur
     for (int j=0; j<1; j++) {
-        for (int i =0; message[i]!=0; i++)
+        for (int i =0; message[i]!=0; i++){
             message[i] = decalage(message[i], dc2);
-        
+        }
     }
     char has2[100] = "hasta la victoria siempre";
     for (int j=0; j<1; j++) {
         for (int i=0; has2[i]!=0; i++){
-
             has2[i] = decalage(has2[i], dc2);
         }
-        
-        //printf("%s",has2);
     }
+    
     envoyer_recevoir(has2, reponse);
     
     return 0;
