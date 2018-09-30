@@ -49,16 +49,13 @@ int main() {
     // Attend après chaque échange l'appui sur entrée
     attente_automatique(false);
 
-    // Commentez ou passez à 'false' les lignes ci-dessus pour en désactiver 
-    // les effets.
-
     if (! connexion()) {
         fprintf (stderr, "Impossible de se connecter à AppoLab!\n");
         return 1;
     }
 
     envoyer_recevoir("login PEREZ 11713143", reponse);
-    /* printf("%s", reponse);  // décommentez pour afficher la réponse du serveur */
+    printf("%s", reponse);
     envoyer_recevoir("load decrypte-v1", reponse);
     envoyer_recevoir("start", reponse);
     
