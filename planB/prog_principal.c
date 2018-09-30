@@ -9,7 +9,8 @@
 
 char decalage(char lettreLue, int decal){
     char lettreSuivante;
-    decal=(decal*decal<(26-decal)*(26-decal))?decal:26-decal  ;
+    decal=(decal*decal<(26-decal)*(26-decal))?decal:26-decal  ; 
+    // Signifie : "si '(decal*decal<(26-decal)*(26-decal))' est vrai, alors 'decal' sinon '26-decal'
     
     if ('a' <= lettreLue && lettreLue <= 'z' ) {
         lettreSuivante = lettreLue + decal;
