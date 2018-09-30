@@ -22,15 +22,11 @@ int main() {
     }
 
     envoyer_recevoir("login PEREZ 11713143", reponse);
-    /* printf("%s", reponse);  // décommentez pour afficher la réponse du serveur */
+    printf("%s", reponse);
     envoyer_recevoir("load hello", reponse);
     envoyer_recevoir("help", reponse);
     envoyer_recevoir("depart", reponse);
 
-    // Exemple de mauvaise réponse
-    //taille = envoyer_recevoir("Bonjour a tous", reponse);
-
-    // Bonne réponse à décommenter
     taille = envoyer_recevoir("Hello world!", reponse);
 
     // Il est possible de travailler sur la réponse du serveur, par exemple
